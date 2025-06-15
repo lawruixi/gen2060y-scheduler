@@ -43,3 +43,20 @@
 .login-div > .register-p:hover {
     text-decoration: underline;
 }
+
+.statusMessage {
+    font-size: 0.75em;
+    border-radius: 8px;
+    margin: 8px;
+    padding: 0px 8px 0px 8px;
+}
+
+.statusMessage.error {
+    background-color: #fca5a5;
+    border: 1px solid #b91c1c;
+}
+
+.statusMessage.success {
+    background-color: #81c784;
+    border: 1px solid #4caf50;
+}

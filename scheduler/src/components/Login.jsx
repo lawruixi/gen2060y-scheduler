@@ -1,31 +1,91 @@
 import {useState} from "react";
 
-function Login({isAuthenticated, setAuthenticated}) {
+function Login({isAuthenticated, setAuthenticated, users, setUsers, setLoggedInUser}) {
     const [isRegister, setRegister] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [users, setUsers] = useState([]);
+    const [statusMessageParams, setStatusMessageParams] = useState(
+        { active: false, className: "", message: "" }
+    );
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        console.log(users);
-    }
+        const matchingUsers = users.filter((user) => user.username == username && user.password == password);
+
+        if (matchingUsers.length <= 0) {
+            setStatusMessageParams({
+                active: true,
+                message: "Username or password is incorrect.",
+                className: "error"
+            })
+
+            return;
+        }
+
+        setLoggedInUser(matchingUsers[0]);
+        setAuthenticated(true)
+    };
 
     const handleRegister = (e) => {
         e.preventDefault();
+
+        if (users.filter((user) => user.username == username).length > 0) {
+            setStatusMessageParams({
+                active: true,
+                message: "User with this username already exists!",
+                className: "error"
+            })
+
+            return;
+        }
+
+        // Guard clause: Passwords do not match.
+        if (confirmPassword != password) {
+            setStatusMessageParams({
+                active: true,
+                message: "Passwords do not match!",
+                className: "error"
+            })
+
+            return;
+        }
 
         setUsers([...users, {
             "username": username,
             "password": password
         }])
+
+        setRegister(false);
+
+        setStatusMessageParams({
+            active: true,
+            message: "Registration successful!",
+            className: "success"
+        })
+
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
+
+        return;
+    };
+
+    if(isAuthenticated) {
+        return;
     }
 
     return (
         <>
             <h3>{ isRegister ? "Register" : "Log In" }</h3>
+            {
+                statusMessageParams.active &&
+                <div className={`statusMessage ${statusMessageParams.className}`}>
+                    <p>{statusMessageParams.message}</p>
+                </div>
+            }
             <form onSubmit={isRegister ? handleRegister : handleLogin}>
                 <div className="login-div">
                     <input
