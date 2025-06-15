@@ -1,5 +1,5 @@
 import {useState} from "react";
-import EventListItem from "../EventListItem";
+import EventListItem from "./EventListItem"
 
 function EventList ({events, setEvents, currentUsername}) {
     // Filter through all events containing the current user's username.
