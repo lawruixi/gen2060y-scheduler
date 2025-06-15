@@ -1,0 +1,45 @@
+.main-div {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-div {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-div > input {
+    width: 75%;
+    min-width: 256px;
+    margin: 0px 8px 16px 8px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 8px;
+}
+
+.login-div > button {
+    width: 75%;
+    margin: 0px 8px 8px 8px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 8px;
+}
+
+
+.login-div > .register-p {
+    font-size: 0.75em;
+    color: blue;
+}
+
+.login-div > .register-p:hover {
+    text-decoration: underline;
+}
