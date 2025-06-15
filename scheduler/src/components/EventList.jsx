@@ -74,7 +74,7 @@ function EventList ({events, setEvents, currentUsername}) {
             }
 
             {
-                relevantEvents.map((eventItem, index) => <EventListItem eventItem={eventItem}/>)
+                relevantEvents.map((eventItem, index) => <EventListItem currentUsername={currentUsername} eventItem={eventItem}/>)
             }
         </div>
     )

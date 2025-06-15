@@ -1,5 +1,10 @@
-function EventListItem({eventItem}) {
+import {useState} from "react";
+import EventHour from "./EventHour";
+
+function EventListItem({currentUsername, eventItem}) {
     const participants = eventItem.relevantUsernames;
+
+    const [currentScheduleUsername, setCurrentScheduleUsername] = useState(currentUsername);
 
     return (
         <div className="event-list-item-div">
@@ -15,17 +20,24 @@ function EventListItem({eventItem}) {
                     }
                 </div>
                 <div className="update-schedule-div">
-                    <h5>Schedule</h5>
+                    <div className="schedule-filter-controls-div">
+                        <h5>Schedule</h5>
+                        <select value={currentScheduleUsername} onChange={(e) => setCurrentScheduleUsername(e.target.value)}>
+                        {
+                            (participants.map((username) => <option key={username}>{username}</option>))
+                        }
+                        </select>
+                    </div>
                     <table style={{borderCollapse: "collapse"}}>
                         <tbody>
                             <tr>
                             {
-                                Array.from({length: 12}, (_, i) => i + 1).map((i) => <td key={i} className="hour-td"></td>)
+                                Array.from({length: 12}, (_, i) => i + 1).map((i) => <EventHour key={i}/>)
                             }
                             </tr>
                             <tr>
                             {
-                                Array.from({length: 12}, (_, i) => i + 1).map((i) => <td key={i + 12} className="hour-td"></td>)
+                                Array.from({length: 12}, (_, i) => i + 1).map((i) => <EventHour key={i+12}/>)
                             }
                             </tr>
                         </tbody>
