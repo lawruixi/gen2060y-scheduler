@@ -14,8 +14,12 @@ function App() {
     }]);
 
     const [events, setEvents] = useState([{
+        "id": 1,
         "name": "Test Event",
-        "relevantUsernames": ["Test"]
+        "relevantUsernames": ["Test", "Test2"],
+        "schedules": {
+            "Test": [new Date(2025, 5, 16, 12)]
+        }
     }])
 
     return <div className="main-div">

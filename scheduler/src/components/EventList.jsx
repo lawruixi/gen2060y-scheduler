@@ -2,6 +2,7 @@ import {useState} from "react";
 import EventListItem from "./EventListItem"
 
 function EventList ({events, setEvents, currentUsername}) {
+    console.log(events);
     // Filter through all events containing the current user's username.
     const relevantEvents = events.filter((eventItem) => eventItem.relevantUsernames.includes(currentUsername));
 
@@ -13,12 +14,11 @@ function EventList ({events, setEvents, currentUsername}) {
     const handleAddEvent = (e) => {
         e.preventDefault();
 
-        console.log("HANDLE ADD EVENT CALLED")
-
         // Add our current username to the new event users too.
         const newEventUsersPlusSelf = currentUsername + "," + newEventUsers
 
         const newEventObject = {
+            "id": events.length, // Convenient way for now as events cannot be deleted.
             "name": newEventName,
             "relevantUsernames": newEventUsersPlusSelf.replace(/ /g, '').split(',')
         }
@@ -31,8 +31,6 @@ function EventList ({events, setEvents, currentUsername}) {
         setShowAddEvent(false);
         setNewEventName("");
         setNewEventUsers("");
-
-        console.log(newEventObject);
     }
 
     return (
@@ -74,7 +72,14 @@ function EventList ({events, setEvents, currentUsername}) {
             }
 
             {
-                relevantEvents.map((eventItem, index) => <EventListItem currentUsername={currentUsername} eventItem={eventItem}/>)
+                relevantEvents.map((eventItem, index) => 
+                    <EventListItem 
+                        currentUsername={currentUsername} 
+                        eventItem={eventItem} 
+                        events={events}
+                        setEvents={setEvents}
+                    />
+                )
             }
         </div>
     )

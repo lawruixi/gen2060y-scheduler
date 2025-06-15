@@ -92,7 +92,7 @@
 }
 
 .event-list-item-div {
-    width: 45%;
+    width: 50%;
     border: 2px solid black;
     border-radius: 16px;
     background-color: #cfd8dc;
@@ -106,9 +106,16 @@
     margin-bottom: 16px;
 }
 
-.event-list-item-div > .participants-div {
+.event-list-item-div > .event-list-item-inner-div {
     width: 100%;
-    margin: 0px 8px 0px 32px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.event-list-item-div > .event-list-item-inner-div > .participants-div {
+    width: 20%;
+    margin: 8px;
 }
 
 .add-event-form-div {
@@ -126,4 +133,43 @@
     padding: 8px;
     border: 1px solid #888;
     border-radius: 8px;
+}
+
+.schedule-div {
+    width: 75%;
+    min-width: 384px;
+    min-height: 192px;
+}
+
+.hour-td {
+    border: 2px solid black;
+    margin: 0px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.hour-td.active {
+    background-color: #4caf50;
+}
+
+.schedule-filter-controls-div {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update-schedule-button {
+    width: 75%;
+    margin: 8px 8px 8px 8px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 8px;
+}
+
+.update-schedule-div {
+    display: flex;
+    flex-direction: column;
 }
