@@ -101,9 +101,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .event-list-item-div > .participants-div {
     width: 100%;
     margin: 0px 8px 0px 32px;
+}
+
+.add-event-form-div {
+    width: 45%;
+    background-color: #e6ee9c;
+    border: 2px solid black;
+    margin: 8px 0px 8px 0px;
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.add-event-form-div > button {
+    width: 75%;
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 8px;
 }

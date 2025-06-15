@@ -53,6 +53,16 @@ function Login({isAuthenticated, setAuthenticated, users, setUsers, setLoggedInU
             return;
         }
 
+        if (username.includes(" ") || username.includes(",")) {
+            setStatusMessageParams({
+                active: true,
+                message: "Invalid character! Commas and spaces are not allowed in usernames.",
+                className: "error"
+            })
+
+            return;
+        }
+
         setUsers([...users, {
             "username": username,
             "password": password

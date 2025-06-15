@@ -1,6 +1,6 @@
 import EventList from "./EventList";
 
-function Home({isAuthenticated, loggedInUser, events}) {
+function Home({isAuthenticated, loggedInUser, events, setEvents}) {
     if (!isAuthenticated) {
         return;
     }
@@ -8,7 +8,7 @@ function Home({isAuthenticated, loggedInUser, events}) {
     return (
         <div className="home-div">
             <h2>Welcome, {loggedInUser.username}</h2>
-            <EventList events={events} currentUsername={loggedInUser.username}/>
+            <EventList events={events} setEvents={setEvents} currentUsername={loggedInUser.username}/>
         </div>
     );
 }

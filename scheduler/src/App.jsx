@@ -32,6 +32,7 @@ function App() {
             isAuthenticated={isAuthenticated}
             loggedInUser={loggedInUser}
             events={events}
+            setEvents={setEvents}
         />
     </div>
 }
