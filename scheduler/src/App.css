@@ -60,3 +60,50 @@
     background-color: #81c784;
     border: 1px solid #4caf50;
 }
+
+.home-div {
+    width: 100%;
+    margin: 8px;
+}
+
+.your-events-div {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+}
+
+.your-events-div > button {
+    min-height: 32px;
+    width: 10%;
+
+    background-color: #81c784;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+
+    font-size: 0.75rem;
+}
+
+.your-events-div > button:hover {
+    background-color: #388e3c;
+    color: white;
+}
+
+.event-list-item-div {
+    width: 45%;
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: #cfd8dc;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-list-item-div > .participants-div {
+    width: 100%;
+    margin: 0px 8px 0px 32px;
+}
