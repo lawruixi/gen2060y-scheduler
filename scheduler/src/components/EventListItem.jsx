@@ -4,6 +4,35 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+function stringToHourOfDay(timeString) {
+    switch(timeString) {
+        case "12:00 AM": return 0;
+        case "1:00 AM": return 1;
+        case "2:00 AM": return 2;
+        case "3:00 AM": return 3;
+        case "4:00 AM": return 4;
+        case "5:00 AM": return 5;
+        case "6:00 AM": return 6;
+        case "7:00 AM": return 7;
+        case "8:00 AM": return 8;
+        case "9:00 AM": return 9;
+        case "10:00 AM": return 10;
+        case "11:00 AM": return 11;
+        case "12:00 PM": return 12;
+        case "1:00 PM": return 13;
+        case "2:00 PM": return 14;
+        case "3:00 PM": return 15;
+        case "4:00 PM": return 16;
+        case "5:00 PM": return 17;
+        case "6:00 PM": return 18;
+        case "7:00 PM": return 19;
+        case "8:00 PM": return 20;
+        case "9:00 PM": return 21;
+        case "10:00 PM": return 22;
+        case "11:00 PM": return 23;
+    }
+}
+
 function EventListItem({currentUsername, eventItem, events, setEvents}) {
     const participants = eventItem.relevantUsernames;
     const schedules = eventItem.schedules;
@@ -18,33 +47,7 @@ function EventListItem({currentUsername, eventItem, events, setEvents}) {
     const handleAddAvailability = () => {
         const scheduleForUsername = schedules[currentUsername] ?? [];
 
-        let updateScheduleHourOfDay = -1;
-        switch(updateScheduleTime) {
-            case "12:00 AM": updateScheduleHourOfDay = 0; break;
-            case "1:00 AM": updateScheduleHourOfDay = 1; break;
-            case "2:00 AM": updateScheduleHourOfDay = 2; break;
-            case "3:00 AM": updateScheduleHourOfDay = 3; break;
-            case "4:00 AM": updateScheduleHourOfDay = 4; break;
-            case "5:00 AM": updateScheduleHourOfDay = 5; break;
-            case "6:00 AM": updateScheduleHourOfDay = 6; break;
-            case "7:00 AM": updateScheduleHourOfDay = 7; break;
-            case "8:00 AM": updateScheduleHourOfDay = 8; break;
-            case "9:00 AM": updateScheduleHourOfDay = 9; break;
-            case "10:00 AM": updateScheduleHourOfDay = 10; break;
-            case "11:00 AM": updateScheduleHourOfDay = 11; break;
-            case "12:00 PM": updateScheduleHourOfDay = 12; break;
-            case "1:00 PM": updateScheduleHourOfDay = 13; break;
-            case "2:00 PM": updateScheduleHourOfDay = 14; break;
-            case "3:00 PM": updateScheduleHourOfDay = 15; break;
-            case "4:00 PM": updateScheduleHourOfDay = 16; break;
-            case "5:00 PM": updateScheduleHourOfDay = 17; break;
-            case "6:00 PM": updateScheduleHourOfDay = 18; break;
-            case "7:00 PM": updateScheduleHourOfDay = 19; break;
-            case "8:00 PM": updateScheduleHourOfDay = 20; break;
-            case "9:00 PM": updateScheduleHourOfDay = 21; break;
-            case "10:00 PM": updateScheduleHourOfDay = 22; break;
-            case "11:00 PM": updateScheduleHourOfDay = 23; break;
-        }
+        const updateScheduleHourOfDay = stringToHourOfDay(updateScheduleTime);
 
         const newScheduleForUsername = [
             ...scheduleForUsername, new Date(
@@ -54,6 +57,37 @@ function EventListItem({currentUsername, eventItem, events, setEvents}) {
                 updateScheduleHourOfDay
             )
         ]
+
+        const newEventItem = {
+            ...eventItem,
+            "schedules": {
+                ...schedules,
+                [currentUsername]: newScheduleForUsername
+            }
+        }
+
+        // In which we delete the event we are changing.
+        const newEvents = events.filter((oldEventItem) => oldEventItem.id != eventItem.id)
+        
+        setEvents([
+            ...newEvents,
+            newEventItem
+        ])
+    }
+
+    const handleDeleteAvailability = () => {
+        const scheduleForUsername = schedules[currentUsername] ?? [];
+
+        const updateScheduleHourOfDay = stringToHourOfDay(updateScheduleTime);
+
+        const newScheduleForUsername = scheduleForUsername.filter((date) => {
+            return !(
+                date.getFullYear() == updateScheduleDate.getFullYear() &&
+                date.getMonth() == updateScheduleDate.getMonth() &&
+                date.getDate() == updateScheduleDate.getDate() &&
+                date.getHours() == updateScheduleHourOfDay
+            );
+        })
 
         const newEventItem = {
             ...eventItem,
