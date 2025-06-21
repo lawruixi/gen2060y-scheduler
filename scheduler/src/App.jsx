@@ -34,7 +34,9 @@ function App() {
         </Login>
         <Home 
             isAuthenticated={isAuthenticated}
+            setAuthenticated={setAuthenticated}
             loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
             events={events}
             setEvents={setEvents}
         />

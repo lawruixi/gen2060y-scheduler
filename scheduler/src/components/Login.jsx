@@ -27,6 +27,10 @@ function Login({isAuthenticated, setAuthenticated, users, setUsers, setLoggedInU
 
         setLoggedInUser(matchingUsers[0]);
         setAuthenticated(true)
+
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
     };
 
     const handleRegister = (e) => {
