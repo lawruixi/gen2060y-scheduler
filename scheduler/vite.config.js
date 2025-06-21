@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/gen2060y-scheduler/'
+  base: '/gen2060y-scheduler/',
   plugins: [react()],
 })
