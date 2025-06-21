@@ -1,6 +1,6 @@
 # gen2060y-scheduler
 
-![image](https://github.com/user-attachments/assets/a2fda8e5-c37c-48d8-8d8b-b17e9410d7dc)
+![image](https://github.com/user-attachments/assets/7ac79f0f-89bd-4580-9a84-eb749c9cf1d7)
 
 A simple scheduler app for the GEN2060Y Mid-Service Blueprint assignment. A proof-of-concept, so some features may not work as described.
 
